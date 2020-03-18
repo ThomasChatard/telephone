@@ -1,2 +1,2 @@
-include ':app', ':luckywheel'
-rootProject.name='Tache Roulettre'
+rootProject.name='TacheRoulette'
+include ':app', ':library'
