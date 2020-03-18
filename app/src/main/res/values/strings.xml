@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Tache Roulette</string>
     <string name="start">Start</string>
-    <string name="lancer_roue">Lancer roue</string>
-    <string name="roue_hasard">Lancer la roue avec tirage avec remise</string>
+    <string name="lancer_roue">Lancer la roue</string>
+    <string name="roue_hasard">Lancer la roue</string>
     <string name="roue_sans_remise">Lancer la roue avec tirage sans remise</string>
     <string name="saisir_personne">Saisir le nom des participants</string>
     <string name="bouton_roue_hasard_personnes">Passer à la saisie des tâches</string>
