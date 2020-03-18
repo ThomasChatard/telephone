@@ -1,0 +1,2 @@
+include ':app', ':luckywheel'
+rootProject.name='Tache Roulettre'
