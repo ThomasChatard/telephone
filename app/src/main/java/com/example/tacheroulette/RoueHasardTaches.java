@@ -23,10 +23,10 @@ public class RoueHasardTaches extends AppCompatActivity {
             }
         });
 
-        final ImageButton retour = findViewById(R.id.retour);
-        retour.setOnClickListener(new View.OnClickListener() {
+        final ImageButton home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(RoueHasardTaches.this, RoueHasardPersonnes.class);
+                Intent intent = new Intent(RoueHasardTaches.this, Menu.class);
                 RoueHasardTaches.this.startActivity(intent);
             }
         });
