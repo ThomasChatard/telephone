@@ -24,10 +24,10 @@ public class RoueHasard extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rouehasard);
 
-        final ImageButton retour = findViewById(R.id.retour);
-        retour.setOnClickListener(new View.OnClickListener() {
+        final ImageButton home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent = new Intent(RoueHasard.this, RoueHasardTaches.class);
+                Intent intent = new Intent(RoueHasard.this, Menu.class);
                 RoueHasard.this.startActivity(intent);
             }
         });

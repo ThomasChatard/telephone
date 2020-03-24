@@ -23,8 +23,8 @@ public class RoueHasardPersonnes extends AppCompatActivity {
             }
         });
 
-        final ImageButton retour = findViewById(R.id.retour);
-        retour.setOnClickListener(new View.OnClickListener() {
+        final ImageButton home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
                 Intent intent = new Intent(RoueHasardPersonnes.this, Menu.class);
                 RoueHasardPersonnes.this.startActivity(intent);
