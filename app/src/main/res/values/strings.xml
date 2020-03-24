@@ -7,4 +7,5 @@
     <string name="saisir_personne">Saisir le nom des participants</string>
     <string name="bouton_roue_hasard_personnes">Passer à la saisie des tâches</string>
     <string name="saisir_taches">Saisir le nom des tâches</string>
+    <string name="ajouter">Ajouter</string>
 </resources>

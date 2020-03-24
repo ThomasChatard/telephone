@@ -22,6 +22,29 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <EditText
+        android:id="@+id/et1"
+        android:layout_width="334dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="306dp"
+        android:layout_marginBottom="371dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="38dp" />
+
+    <Button
+        android:id="@+id/ajouter"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="397dp"
+        android:layout_marginBottom="286dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="161dp"
+        android:text="@string/ajouter"
+        tools:ignore="MissingConstraints" />
+
     <Button
         android:id="@+id/suivant"
         android:layout_width="wrap_content"

@@ -4,9 +4,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class RoueHasardPersonnes extends AppCompatActivity {
 
@@ -16,10 +21,25 @@ public class RoueHasardPersonnes extends AppCompatActivity {
         setContentView(R.layout.rouehasardpersonnes);
 
         final Button suivant = findViewById(R.id.suivant);
+        final Button ajouter = findViewById(R.id.ajouter);
+        final ArrayList<String> noms = new ArrayList<String>();
+        final String[] array = new String[500];
+
+        ajouter.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                final EditText saisie = (EditText) findViewById(R.id.et1);
+                noms.add(saisie.getText().toString());
+                saisie.setText(" ");
+            }
+        });
         suivant.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
+                for (int i = 0; i <= noms.size()-1; i++){
+                    array[i] = noms.get(i);
+                }
                 Intent intent = new Intent(RoueHasardPersonnes.this, RoueHasardTaches.class);
-                RoueHasardPersonnes.this.startActivity(intent);
+                intent.putExtra("noms",array);
+                startActivity(intent);
             }
         });
 
