@@ -22,13 +22,5 @@ public class Menu extends AppCompatActivity {
                 Menu.this.startActivity(intent);
             }
         });
-
-        final ImageButton parametres = findViewById(R.id.parametres);
-        parametres.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v){
-                Intent intent = new Intent(Menu.this, Parametres.class);
-                Menu.this.startActivity(intent);
-            }
-        });
     }
 }
