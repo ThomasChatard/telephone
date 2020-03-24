@@ -9,44 +9,28 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="148dp"
-        android:layout_height="30dp"
-        android:layout_marginStart="130dp"
-        android:layout_marginLeft="130dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="133dp"
-        android:layout_marginRight="133dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:gravity="center"
         android:text="@string/lancer_roue"
         android:textSize="20dp"
         android:textStyle="bold"
-        LuckyWheel:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/retour"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/parametres"
+        android:id="@+id/home"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="52dp"
-        android:layout_marginLeft="52dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/roue_parametre"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/roue_parametre" />
-
-    <ImageButton
-        android:id="@+id/retour"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/retour"
+        android:layout_marginStart="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:src="@drawable/home"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:src="@drawable/retour" />
+        tools:src="@drawable/home" />
 
     <rubikstudio.library.LuckyWheelView
         android:id="@+id/luckyWheel"

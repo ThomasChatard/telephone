@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,38 +23,24 @@ public class RoueHasard extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rouehasard);
-        Intent intent = getIntent();
-        String[] stringArray = intent.getStringArrayExtra("noms");
-        final TextView tv = (TextView) findViewById(R.id.textView);
-        int j = 0;
-        int l = 0;
-        while(stringArray[j] != null){
-            l = l + 1;
-            j++;
-        }
 
-
-        final ImageButton retour = findViewById(R.id.retour);
-        retour.setOnClickListener(new View.OnClickListener() {
+        final ImageButton home = findViewById(R.id.home);
+        home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                Intent intent1 = new Intent(RoueHasard.this, RoueHasardTaches.class);
-                RoueHasard.this.startActivity(intent1);
+                Intent intent = new Intent(RoueHasard.this, Menu.class);
+                RoueHasard.this.startActivity(intent);
             }
         });
 
-
         final LuckyWheelView luckyWheelView = (LuckyWheelView) findViewById(R.id.luckyWheel);
 
-        for (int i = 0; i < l;i++){
-            LuckyItem luckyItem = new LuckyItem();
-            luckyItem.topText = stringArray[i];
-            luckyItem.color = 0xffFFF3E0;
-            data.add(luckyItem);
-        }
+        LuckyItem luckyItem1 = new LuckyItem();
+        luckyItem1.topText = "100";
+        luckyItem1.color = 0xffFFF3E0;
+        data.add(luckyItem1);
 
-
-        /*LuckyItem luckyItem2 = new LuckyItem();
-        luckyItem2.topText = stringArray[0];
+        LuckyItem luckyItem2 = new LuckyItem();
+        luckyItem2.topText = "200";
         luckyItem2.color = 0xffFFE0B2;
         data.add(luckyItem2);
 
@@ -112,7 +97,7 @@ public class RoueHasard extends Activity {
         LuckyItem luckyItem12 = new LuckyItem();
         luckyItem12.topText = "3000";
         luckyItem12.color = 0xffFFE0B2;
-        data.add(luckyItem12);*/
+        data.add(luckyItem12);
 
         /////////////////////
 
@@ -143,7 +128,7 @@ public class RoueHasard extends Activity {
 
     private int getRandomIndex() {
         Random rand = new Random();
-        return rand.nextInt(data.size()) + 0;
+        return rand.nextInt(data.size() - 1) + 0;
     }
 
     private int getRandomRound() {
