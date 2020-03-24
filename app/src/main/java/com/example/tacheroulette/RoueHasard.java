@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -24,6 +25,17 @@ public class RoueHasard extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rouehasard);
 
+        Intent intent = getIntent();
+        String[] str = new String[500];
+        if (intent.hasExtra("noms")){
+            str = intent.getStringArrayExtra("noms");
+        }
+
+        int position = 0;
+        while (str[position] != null){
+            position = position + 1;
+        }
+
         final ImageButton home = findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
@@ -34,11 +46,14 @@ public class RoueHasard extends Activity {
 
         final LuckyWheelView luckyWheelView = (LuckyWheelView) findViewById(R.id.luckyWheel);
 
-        LuckyItem luckyItem1 = new LuckyItem();
-        luckyItem1.topText = "100";
-        luckyItem1.color = 0xffFFF3E0;
-        data.add(luckyItem1);
+        for(int i = 0; i < position; i++){
+            LuckyItem luckyItem1 = new LuckyItem();
+            luckyItem1.topText = str[i];
+            luckyItem1.color = 0xffFFF3E0;
+            data.add(luckyItem1);
+        }
 
+        /*
         LuckyItem luckyItem2 = new LuckyItem();
         luckyItem2.topText = "200";
         luckyItem2.color = 0xffFFE0B2;
@@ -101,6 +116,8 @@ public class RoueHasard extends Activity {
 
         /////////////////////
 
+         */
+
         luckyWheelView.setData(data);
         luckyWheelView.setRound(5);
 
@@ -128,7 +145,7 @@ public class RoueHasard extends Activity {
 
     private int getRandomIndex() {
         Random rand = new Random();
-        return rand.nextInt(data.size() - 1) + 0;
+        return rand.nextInt(data.size()) + 0;
     }
 
     private int getRandomRound() {
