@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".RoueHasardTaches">
         </activity>
+        <activity android:name=".Resume">
+        </activity>
 
     </application>
 

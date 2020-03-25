@@ -19,30 +19,34 @@ import rubikstudio.library.PielView;
 
 public class RoueHasard extends Activity {
     List<LuckyItem> data = new ArrayList<>();
+    private int cpt = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rouehasard);
-
+        //On récupère les noms
         Intent intent = getIntent();
         String[] tabnoms = new String[500];
         if (intent.hasExtra("noms")){
             tabnoms = intent.getStringArrayExtra("noms");
         }
-
-        String[] tabtaches = new String[500];
-        if (intent.hasExtra("noms")){
-            tabtaches = intent.getStringArrayExtra("taches");
-        }
-
-        final TextView tv = findViewById(R.id.tv);
-        tv.setText(tabtaches[0]);
-
         int position = 0;
         while (tabnoms[position] != null){
             position = position + 1;
         }
+
+        //On récupère les taches
+        String[] tabtaches = new String[500];
+        if (intent.hasExtra("noms")){
+            tabtaches = intent.getStringArrayExtra("taches");
+        }
+        final TextView tv = findViewById(R.id.tv);
+        tv.setText(tabtaches[0]);
+
+
+
 
         final ImageButton home = findViewById(R.id.home);
         home.setOnClickListener(new View.OnClickListener() {
@@ -64,11 +68,6 @@ public class RoueHasard extends Activity {
         luckyWheelView.setData(data);
         luckyWheelView.setRound(5);
 
-        /*luckyWheelView.setLuckyWheelBackgrouldColor(0xff0000ff);
-        luckyWheelView.setLuckyWheelTextColor(0xffcc0000);
-        luckyWheelView.setLuckyWheelCenterImage(getResources().getDrawable(R.drawable.icon));
-        luckyWheelView.setLuckyWheelCursorImage(R.drawable.ic_cursor);*/
-
 
         findViewById(R.id.start).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -78,10 +77,24 @@ public class RoueHasard extends Activity {
             }
         });
 
+
+
+        final String[] finalTabtaches = tabtaches;
+        final String[][] resume = new String[100][2];
         luckyWheelView.setLuckyRoundItemSelectedListener(new LuckyWheelView.LuckyRoundItemSelectedListener() {
             @Override
             public void LuckyRoundItemSelected(int index) {
                 Toast.makeText(getApplicationContext(), data.get(index).topText, Toast.LENGTH_SHORT).show();
+                tv.setText(finalTabtaches[cpt +1]);
+                resume[cpt][0] = data.get(index).topText;
+                resume[cpt][1] = finalTabtaches[cpt];
+                cpt = cpt + 1;
+
+                if (finalTabtaches[cpt] == null){
+                        Intent intent = new Intent(RoueHasard.this, RoueHasard.class);
+                        intent.putExtra("resume", resume);
+                        startActivity(intent);
+                }
             }
         });
     }
