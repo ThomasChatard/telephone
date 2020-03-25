@@ -31,8 +31,6 @@ public class Resume extends Activity {
             resumeTaches = intent.getStringArrayListExtra("resumeTaches");
         }
 
-        final TextView tv2 = (TextView) findViewById(R.id.textView2);
-
         ListView ListViewTaches = (ListView) findViewById(R.id.lv);
         ListView ListViewNoms = (ListView) findViewById(R.id.lv1);
 
