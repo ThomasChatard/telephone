@@ -5,15 +5,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".RoueHasard">
+    tools:context=".RoueHasard"
+    android:background="@drawable/linear">
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:fontFamily="@font/alfa_slab_one"
         android:gravity="center"
         android:text="@string/lancer_roue"
+        android:textColor="#9c190b"
         android:textSize="20dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,9 +58,10 @@
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:layout_marginTop="92dp"
-        android:background="#00E6FF"
+        android:background="@drawable/custom_button"
+        android:fontFamily="@font/alfa_slab_one"
         android:text="@string/start"
-        android:textColor="@android:color/white"
+        android:textColor="#9c190b"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/luckyWheel" />
 
@@ -66,7 +70,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
+        android:fontFamily="@font/alfa_slab_one"
         android:text=""
+        android:textColor="#9c190b"
         LuckyWheel:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintBottom_toTopOf="@+id/suivant"
         app:layout_constraintEnd_toEndOf="parent"
