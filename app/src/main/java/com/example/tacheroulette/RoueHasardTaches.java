@@ -20,15 +20,14 @@ public class RoueHasardTaches extends AppCompatActivity {
         setContentView(R.layout.rouehasardtaches);
 
         Intent intent = getIntent();
-        String[] str = new String[500];
+        ArrayList<String> noms = new ArrayList<String>();
         if (intent.hasExtra("noms")){
-            str = intent.getStringArrayExtra("noms");
+            noms = intent.getStringArrayListExtra("noms");
         }
 
         final Button suivant = findViewById(R.id.suivant);
         final Button ajouter = findViewById(R.id.ajouter);
         final ArrayList<String> taches = new ArrayList<String>();
-        final String[] array = new String[500];
 
         ajouter.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -38,15 +37,12 @@ public class RoueHasardTaches extends AppCompatActivity {
             }
         });
 
-        final String[] finalStr = str;
+        final ArrayList<String> finalNoms = noms;
         suivant.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                for (int i = 0; i <= taches.size()-1; i++){
-                    array[i] = taches.get(i);
-                }
                 Intent intent = new Intent(RoueHasardTaches.this, RoueHasard.class);
-                intent.putExtra("noms", finalStr);
-                intent.putExtra("taches", array);
+                intent.putExtra("noms", finalNoms);
+                intent.putExtra("taches", taches);
                 RoueHasardTaches.this.startActivity(intent);
             }
         });

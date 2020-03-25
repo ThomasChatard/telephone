@@ -23,7 +23,6 @@ public class RoueHasardPersonnes extends AppCompatActivity {
         final Button suivant = findViewById(R.id.suivant);
         final Button ajouter = findViewById(R.id.ajouter);
         final ArrayList<String> noms = new ArrayList<String>();
-        final String[] array = new String[500];
 
         ajouter.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
@@ -32,13 +31,11 @@ public class RoueHasardPersonnes extends AppCompatActivity {
                 saisie.setText(" ");
             }
         });
+
         suivant.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v){
-                for (int i = 0; i <= noms.size()-1; i++){
-                    array[i] = noms.get(i);
-                }
                 Intent intent = new Intent(RoueHasardPersonnes.this, RoueHasardTaches.class);
-                intent.putExtra("noms",array);
+                intent.putExtra("noms",noms);
                 startActivity(intent);
             }
         });

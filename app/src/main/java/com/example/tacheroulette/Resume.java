@@ -7,10 +7,13 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 
 public class Resume extends Activity {
 
-    private String[] tabnoms;
+    private ArrayList<String> resumeNoms = new ArrayList<String>();
+    private ArrayList<String> resumeTaches = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,22 +23,23 @@ public class Resume extends Activity {
         //On recupere le résumé
         Intent intent = getIntent();
 
-        if (intent.hasExtra("resumeNom")){
-            tabnoms = intent.getStringArrayExtra("resumeNom");
+        if (intent.hasExtra("resumeNoms")){
+            resumeNoms = intent.getStringArrayListExtra("resumeNoms");
         }
-        String[] tabtache = new String[100];
-        if (intent.hasExtra("resumeTache")){
-            tabtache = intent.getStringArrayExtra("resumeTache");
-        }
-        int position = 0;
-        while (tabnoms[position] != null){
-            position = position + 1;
-        }
-        final TextView tv2 = (TextView) findViewById(R.id.textView2);
-        tv2.setText(tabnoms[0]);
-        ListView mListView = (ListView) findViewById(R.id.lv);
 
-        final ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, tabnoms);
-        mListView.setAdapter(adapter);
+        if (intent.hasExtra("resumeTaches")){
+            resumeTaches = intent.getStringArrayListExtra("resumeTaches");
+        }
+
+        final TextView tv2 = (TextView) findViewById(R.id.textView2);
+
+        ListView ListViewTaches = (ListView) findViewById(R.id.lv);
+        ListView ListViewNoms = (ListView) findViewById(R.id.lv1);
+
+        final ArrayAdapter<String> adapterNoms = new ArrayAdapter(this, android.R.layout.simple_list_item_1, resumeNoms);
+        ListViewNoms.setAdapter(adapterNoms);
+
+        final ArrayAdapter<String> adapterTaches = new ArrayAdapter(this, android.R.layout.simple_list_item_1, resumeTaches);
+        ListViewTaches.setAdapter(adapterTaches);
     }
 }
