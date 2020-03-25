@@ -20,6 +20,10 @@ import rubikstudio.library.PielView;
 public class RoueHasard extends Activity {
     List<LuckyItem> data = new ArrayList<>();
     private int cpt = 0;
+    private String[] tabnoms = new String[500];
+    private String[] resumeNom = new String[100];
+    private String[] finalTabtaches = new String[100];
+    private String btnStr;
 
 
     @Override
@@ -28,7 +32,7 @@ public class RoueHasard extends Activity {
         setContentView(R.layout.rouehasard);
         //On récupère les noms
         Intent intent = getIntent();
-        String[] tabnoms = new String[500];
+
         if (intent.hasExtra("noms")){
             tabnoms = intent.getStringArrayExtra("noms");
         }
@@ -44,6 +48,8 @@ public class RoueHasard extends Activity {
         }
         final TextView tv = findViewById(R.id.tv);
         tv.setText(tabtaches[0]);
+
+        final TextView tv1 = (TextView) findViewById(R.id.textView);
 
 
 
@@ -68,32 +74,37 @@ public class RoueHasard extends Activity {
         luckyWheelView.setData(data);
         luckyWheelView.setRound(5);
 
+        final Button btn = findViewById(R.id.start);
+
 
         findViewById(R.id.start).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int index = getRandomIndex();
-                luckyWheelView.startLuckyWheelWithTargetIndex(index);
+                btnStr = btn.getText().toString();
+                if (btnStr == "Voir résumé"){
+                    Intent intent1 = new Intent(RoueHasard.this, Resume.class);
+                    intent1.putExtra("resumeNom", resumeNom);
+                    intent1.putExtra("resumeTache", finalTabtaches);
+                    startActivity(intent1);
+                }else{
+                    int index = getRandomIndex();
+                    luckyWheelView.startLuckyWheelWithTargetIndex(index);
+                }
             }
         });
 
+        finalTabtaches = tabtaches;
 
-
-        final String[] finalTabtaches = tabtaches;
-        final String[][] resume = new String[100][2];
         luckyWheelView.setLuckyRoundItemSelectedListener(new LuckyWheelView.LuckyRoundItemSelectedListener() {
             @Override
             public void LuckyRoundItemSelected(int index) {
                 Toast.makeText(getApplicationContext(), data.get(index).topText, Toast.LENGTH_SHORT).show();
                 tv.setText(finalTabtaches[cpt +1]);
-                resume[cpt][0] = data.get(index).topText;
-                resume[cpt][1] = finalTabtaches[cpt];
+                tv1.setText(tabnoms[index]);
+                resumeNom[cpt] = tabnoms[index];
                 cpt = cpt + 1;
-
                 if (finalTabtaches[cpt] == null){
-                        Intent intent = new Intent(RoueHasard.this, RoueHasard.class);
-                        intent.putExtra("resume", resume);
-                        startActivity(intent);
+                    btn.setText("Voir résumé");
                 }
             }
         });
