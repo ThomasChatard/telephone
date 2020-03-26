@@ -8,34 +8,56 @@
 
     <ListView
         android:id="@+id/lv"
-        android:layout_width="195dp"
-        android:layout_height="459dp"
+        android:layout_width="197dp"
+        android:layout_height="414dp"
         android:layout_marginStart="1dp"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="76dp"
         android:layout_marginEnd="205dp"
         android:layout_marginRight="205dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="196dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.547"
         tools:ignore="MissingConstraints"></ListView>
 
     <ListView
         android:id="@+id/lv1"
-        android:layout_width="202dp"
-        android:layout_height="459dp"
+        android:layout_width="197dp"
+        android:layout_height="414dp"
         android:layout_marginStart="206dp"
         android:layout_marginLeft="206dp"
-        android:layout_marginTop="164dp"
-        android:layout_marginBottom="108dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginBottom="196dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.555"
         tools:ignore="MissingConstraints"></ListView>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:layout_width="264dp"
+        android:layout_height="195dp"
+        android:layout_marginStart="73dp"
+        android:layout_marginLeft="73dp"
+        android:layout_marginTop="520dp"
+        android:layout_marginEnd="74dp"
+        android:layout_marginRight="74dp"
+        android:layout_marginBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints"
+
+        app:lottie_rawRes="@raw/pepe"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"/>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

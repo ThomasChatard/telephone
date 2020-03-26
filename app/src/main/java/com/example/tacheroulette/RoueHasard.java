@@ -2,6 +2,7 @@ package com.example.tacheroulette;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,9 +14,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import nl.dionsegijn.konfetti.KonfettiView;
+import nl.dionsegijn.konfetti.models.Shape;
+import nl.dionsegijn.konfetti.models.Size;
 import rubikstudio.library.LuckyWheelView;
 import rubikstudio.library.model.LuckyItem;
-import rubikstudio.library.PielView;
+
 
 public class RoueHasard extends Activity {
     List<LuckyItem> data = new ArrayList<>();
@@ -25,12 +29,15 @@ public class RoueHasard extends Activity {
     private ArrayList<String> taches = new ArrayList<String>();
     private ArrayList<String> resumeNoms = new ArrayList<String>();
     private ArrayList<String> resumeTaches = new ArrayList<String>();
+    KonfettiView konfettiView;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.rouehasard);
+
+        konfettiView = (KonfettiView) findViewById(R.id.viewKonfetti);
 
         Intent intent = getIntent();
 
@@ -96,6 +103,16 @@ public class RoueHasard extends Activity {
                 } else {
                     tv.setText(taches.get(cpt));
                 }
+                konfettiView.build()
+                        .addColors(Color.YELLOW,Color.GREEN, Color.MAGENTA)
+                        .setDirection(0.0,359.0)
+                        .setSpeed(1f,5f)
+                        .setFadeOutEnabled(true)
+                        .setTimeToLive(2000L)
+                        .addShapes(Shape.CIRCLE, Shape.RECT)
+                        .addSizes(new Size(12,16))
+                        .setPosition(konfettiView.getX()+konfettiView.getWidth()/2,konfettiView.getY()+konfettiView.getHeight()/3)
+                        .burst(100);
             }
         });
     }

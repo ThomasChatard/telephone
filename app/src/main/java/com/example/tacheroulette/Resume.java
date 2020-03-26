@@ -2,6 +2,7 @@ package com.example.tacheroulette;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 
 
 public class Resume extends Activity {
-
+    MediaPlayer mySong;
     private ArrayList<String> resumeNoms = new ArrayList<String>();
     private ArrayList<String> resumeTaches = new ArrayList<String>();
 
@@ -19,6 +20,11 @@ public class Resume extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resume);
+
+        mySong = MediaPlayer.create(Resume.this,R.raw.applause);
+        mySong.start();
+
+
 
         //On recupere le résumé
         Intent intent = getIntent();
@@ -40,4 +46,11 @@ public class Resume extends Activity {
         final ArrayAdapter<String> adapterTaches = new ArrayAdapter(this, android.R.layout.simple_list_item_1, resumeTaches);
         ListViewTaches.setAdapter(adapterTaches);
     }
+
+    @Override
+    protected void onPause(){
+        super.onPause();
+        mySong.release();
+    }
+
 }
