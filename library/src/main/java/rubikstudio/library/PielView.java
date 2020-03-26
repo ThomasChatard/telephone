@@ -155,9 +155,6 @@ public class PielView extends View {
                 getMeasuredHeight() - mPadding / 2), null);
     }
 
-    /**
-     * @param canvas
-     */
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -212,10 +209,7 @@ public class PielView extends View {
         canvas.drawCircle(mCenter, mCenter, mCenter - 5, mBackgroundPaint);
     }
 
-    /**
-     * @param widthMeasureSpec
-     * @param heightMeasureSpec
-     */
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -230,11 +224,7 @@ public class PielView extends View {
         setMeasuredDimension(width, width);
     }
 
-    /**
-     * @param canvas
-     * @param tmpAngle
-     * @param bitmap
-     */
+
     private void drawImage(Canvas canvas, float tmpAngle, Bitmap bitmap) {
         int imgWidth = mRadius / mLuckyItemList.size();
 
@@ -263,12 +253,6 @@ public class PielView extends View {
     }
 
 
-    /**
-     * @param canvas
-     * @param tmpAngle
-     * @param sweepAngle
-     * @param mStr
-     */
     private void drawTopText(Canvas canvas, float tmpAngle, float sweepAngle, String mStr, int backgroundColor) {
         Path path = new Path();
         path.addArc(mRange, tmpAngle, sweepAngle);
@@ -289,12 +273,6 @@ public class PielView extends View {
     }
 
 
-    /**
-     * @param canvas
-     * @param tmpAngle
-     * @param mStr
-     * @param backgroundColor
-     */
     private void drawSecondaryText(Canvas canvas, float tmpAngle, String mStr, int backgroundColor) {
         canvas.save();
         int arraySize = mLuckyItemList.size();
@@ -326,16 +304,12 @@ public class PielView extends View {
         canvas.restore();
     }
 
-    /**
-     * @return
-     */
+
     private float getAngleOfIndexTarget(int index) {
         return (360f / mLuckyItemList.size()) * index;
     }
 
-    /**
-     * @param numberOfRound
-     */
+
     public void setRound(int numberOfRound) {
         mRoundOfNumber = numberOfRound;
     }
@@ -350,11 +324,6 @@ public class PielView extends View {
         rotateTo(index, (rand.nextInt() * 3) % 2, true);
     }
 
-    /**
-     * @param index
-     * @param rotation,  spin orientation of the wheel if clockwise or counterclockwise
-     * @param startSlow, either animates a slow start or an immediate turn based on the trigger
-     */
     @TargetApi(Build.VERSION_CODES.LOLLIPOP_MR1)
     public void rotateTo(final int index, @SpinRotation final int rotation, boolean startSlow) {
         if (isRunning) {
@@ -363,12 +332,10 @@ public class PielView extends View {
 
         int rotationAssess = rotation <= 0 ? 1 : -1;
 
-        //If the staring position is already off 0 degrees, make an illusion that the rotation has smoothly been triggered.
-        // But this inital animation will just reset the position of the circle to 0 degreees.
+
         if (getRotation() != 0.0f) {
             setRotation(getRotation() % 360f);
             TimeInterpolator animationStart = startSlow ? new AccelerateInterpolator() : new LinearInterpolator();
-            //The multiplier is to do a big rotation again if the position is already near 360.
             float multiplier = getRotation() > 200f ? 2 : 1;
             animate()
                     .setInterpolator(animationStart)
@@ -399,8 +366,7 @@ public class PielView extends View {
             return;
         }
 
-        // This addition of another round count for counterclockwise is to simulate the perception of the same number of spin
-        // if you still need to reach the same outcome of a positive degrees rotation with the number of rounds reversed.
+
         if (rotationAssess < 0) mRoundOfNumber++;
 
         float targetAngle = ((360f * mRoundOfNumber * rotationAssess) + 270f - getAngleOfIndexTarget(index) - (360f / mLuckyItemList.size()) / 2);
@@ -478,15 +444,14 @@ public class PielView extends View {
 
                 fingerRotation = newFingerRotation;
 
-                // This computes if you're holding the tap for too long
+
                 upPressTime = event.getEventTime();
                 if (upPressTime - downPressTime > 700L) {
-                    // Disregarding the touch since the tap is too slow
+
                     return true;
                 }
 
-                // These operators are added so that fling difference can be evaluated
-                // with usually numbers that are only around more or less 100 / -100.
+
                 if (computedRotation <= -250f) {
                     computedRotation += 360f;
                 } else if (computedRotation >= 250f) {
@@ -505,7 +470,6 @@ public class PielView extends View {
                 flingDiff = computedRotation - viewRotation;
 
                 if (flingDiff <= -60 ||
-                        //If you have a very fast flick / swipe, you an disregard the touch difference
                         (flingDiff < 0 && flingDiff >= -59 && upPressTime - downPressTime <= 200L)) {
                     if (predeterminedNumber > -1) {
                         rotateTo(predeterminedNumber, SpinRotation.COUNTERCLOCKWISE, false);
@@ -515,7 +479,6 @@ public class PielView extends View {
                 }
 
                 if (flingDiff >= 60 ||
-                        //If you have a very fast flick / swipe, you an disregard the touch difference
                         (flingDiff > 0 && flingDiff <= 59 && upPressTime - downPressTime <= 200L)) {
                     if (predeterminedNumber > -1) {
                         rotateTo(predeterminedNumber, SpinRotation.CLOCKWISE, false);
@@ -539,12 +502,7 @@ public class PielView extends View {
         return rand.nextInt(mLuckyItemList.size() - 1) + 0;
     }
 
-    /**
-     * This detects if your finger movement is a result of an actual raw touch event of if it's from a view jitter.
-     * This uses 3 events of rotation temporary storage so that differentiation between swapping touch events can be determined.
-     *
-     * @param newRotValue
-     */
+
     private boolean isRotationConsistent(final double newRotValue) {
         double evalValue = newRotValue;
 
@@ -561,7 +519,6 @@ public class PielView extends View {
                 || Double.compare(newRotationStore[1], newRotationStore[0]) == 0
                 || Double.compare(newRotationStore[2], newRotationStore[1]) == 0
 
-                //Is the middle event the odd one out
                 || (newRotationStore[0] > newRotationStore[1] && newRotationStore[1] < newRotationStore[2])
                 || (newRotationStore[0] < newRotationStore[1] && newRotationStore[1] > newRotationStore[2])
         ) {

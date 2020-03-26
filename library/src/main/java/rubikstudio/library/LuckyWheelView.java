@@ -58,10 +58,6 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
         init(context, attrs);
     }
 
-    /**
-     * @param ctx
-     * @param attrs
-     */
     private void init(Context ctx, AttributeSet attrs) {
         if (attrs != null) {
             TypedArray typedArray = ctx.obtainStyledAttributes(attrs, R.styleable.LuckyWheelView);
@@ -153,23 +149,15 @@ public class LuckyWheelView extends RelativeLayout implements PielView.PieRotate
         pielView.setPieTextColor(color);
     }
 
-    /**
-     * @param data
-     */
     public void setData(List<LuckyItem> data) {
         pielView.setData(data);
     }
 
-    /**
-     * @param numberOfRound
-     */
+
     public void setRound(int numberOfRound) {
         pielView.setRound(numberOfRound);
     }
 
-    /**
-     * @param fixedNumber
-     */
     public void setPredeterminedNumber(int fixedNumber) {
         pielView.setPredeterminedNumber(fixedNumber);
     }
